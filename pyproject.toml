@@ -1,0 +1,37 @@
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[project]
+name = "dcim"
+version = "0.1.0"
+description = "Free space on an Android phone by copying DCIM media to a NAS over MTP, verifying every file before deleting the originals"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "rich>=13.7",
+]
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.39",
+    "pytest>=8.3",
+    "ruff>=0.9",
+]
+
+[project.scripts]
+dcim = "dcim.cli:main"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "PTH", "RUF"]
+
+[tool.basedpyright]
+include = ["src", "tests"]
+typeCheckingMode = "standard"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
